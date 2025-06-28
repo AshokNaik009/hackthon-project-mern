@@ -1,4 +1,5 @@
 const express = require('express');
+const { STATUS, SIZE, TYPE } = require('../constants/constants');
 const router = express.Router();
 
 
@@ -30,19 +31,53 @@ const router = express.Router();
  */
 router.get('/', async (req, res) => {
   try {
-    const { id, startDate, endDate, type, status, page, size } = req.body;
+    const { id, startDate, endDate, type, status, page, size } = req.query;
 
     // Check the date
+    const filter = {}
+    
 
     // Check the type
+    if (type) {
+        if (!Object.values(TYPE).includes(type)) {
+            return res.status(400).json({ message: 'Invalid Transaction Type' });
+        }
+
+        filter.type = type;
+    }
 
     // Check the status
+    if (status) {
+        if (!Object.values(STATUS).includes(status)) {    
+            return res.status(400).json({ message: 'Invalid Order Status' });
+        }
+
+        filter.status = status;
+    }
+
+    if (startDate && endDate) {
+        if (!isValidEpoch(startDate) || !isValidEpoch(endDate)) {
+            return res.status(400).json({ message: 'Invalid From Date or To Date' });
+        }
+    }
 
     // Size
+    if (size && Object.values(SIZE).includes(size)) {
+
+    }
 
     // Page
+    if (page && Number.isNaN(Number(page)) && page > 0) {
+
+    }
+
+    const count = 0;
+    const data = {}
+    
     res.status(200).json({
-      success: true
+      success: true,
+      count,
+      data
     });
   } catch (error) {
     console.error('Error fetching users:', error);

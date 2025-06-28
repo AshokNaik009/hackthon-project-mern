@@ -1,12 +1,24 @@
-export const TYPE = Object.freeze({
+const TYPE = Object.freeze({
     BUY: "Buy",
     SELL: "Sell"
 });
 
-export const STATUS = Object.freeze({
+const STATUS = Object.freeze({
     SUBMITTED: 'Submitted',
     CANCELLED: 'Cancelled',
     EXECUTED: 'Executed',
     COMPLETED: 'Completed',
     FAILED: 'Failed'
 })
+
+const SIZE = Object.freeze({
+    SIZE_10: 10,
+    SIZE_20: 20,
+    SIZE_50: 50
+})
+
+module.exports = {
+    TYPE,
+    STATUS,
+    SIZE
+};
