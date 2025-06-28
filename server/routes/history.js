@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+
 /**
  * @swagger
  * /api/history:
@@ -28,6 +30,17 @@ const router = express.Router();
  */
 router.get('/', async (req, res) => {
   try {
+    const { id, startDate, endDate, type, status, page, size } = req.body;
+
+    // Check the date
+
+    // Check the type
+
+    // Check the status
+
+    // Size
+
+    // Page
     res.status(200).json({
       success: true
     });
