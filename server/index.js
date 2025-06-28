@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const connectDB = require('./config/database');
 const { swaggerUi, specs } = require('./config/swagger');
 require('dotenv').config();
@@ -24,6 +25,17 @@ app.get('/', (req, res) => {
 
 // API routes
 app.use('/api/users', require('./routes/users'));
+
+// Serve React static files in production
+if (process.env.NODE_ENV === 'production') {
+  // Serve static files from React build
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 8003;
 

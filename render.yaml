@@ -1,34 +1,18 @@
 services:
-  # Backend API service
+  # Full-stack MERN application (Backend + Frontend)
   - type: web
-    name: hackthon-api
+    name: hackthon-mern-app
     env: node
     plan: free
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    buildCommand: npm install && npm run install-all && npm run build-production
+    startCommand: npm run start-production
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        fromDatabase:
-          name: mongodb-uri
-          property: connectionString
+        value: mongodb+srv://ashok:UsKGxmsHmIqgI8Uw@cluster0.0z6tpsy.mongodb.net/hackthon_project?retryWrites=true&w=majority&appName=Cluster0
       - key: JWT_SECRET
         generateValue: true
     healthCheckPath: /
-    
-  # Frontend static site
-  - type: web
-    name: hackthon-client
-    env: static
-    plan: free
-    buildCommand: cd client && npm install && npm run build
-    staticPublishPath: ./client/build
-    envVars:
-      - key: REACT_APP_API_URL
-        fromService:
-          type: web
-          name: hackthon-api
-          property: host

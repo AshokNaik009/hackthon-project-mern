@@ -93,7 +93,7 @@ The application connects to MongoDB Atlas with a pre-configured users collection
 - `GET /api/users` - Fetch all users
 - `GET /api-docs` - Swagger documentation
 
-## 🚀 Deployment on Render
+## 🚀 Deployment on Render (Single Service)
 
 ### Prerequisites
 - GitHub account
@@ -113,37 +113,28 @@ The application connects to MongoDB Atlas with a pre-configured users collection
    - Go to [Render Dashboard](https://dashboard.render.com)
    - Click "New" → "Blueprint"
    - Connect your GitHub repository
-   - Render will automatically detect `render.yaml` and deploy both services
+   - Render will automatically detect `render.yaml` and deploy as a single service
 
 3. **Environment Variables**
    
    The `render.yaml` automatically configures:
    - `NODE_ENV=production`
    - `PORT=10000` (Render's default)
-   - `MONGODB_URI` (from your database)
+   - `MONGODB_URI` (your MongoDB connection string)
    - `JWT_SECRET` (auto-generated)
-   - `REACT_APP_API_URL` (auto-linked to backend)
 
 4. **Access Your App**
-   - Backend API: `https://hackthon-api.onrender.com`
-   - Frontend: `https://hackthon-client.onrender.com`
-   - API Docs: `https://hackthon-api.onrender.com/api-docs`
+   - **Full App**: `https://hackthon-mern-app.onrender.com`
+   - **API Endpoints**: `https://hackthon-mern-app.onrender.com/api/users`
+   - **API Docs**: `https://hackthon-mern-app.onrender.com/api-docs`
 
-### Manual Deployment (Alternative)
+### How It Works
 
-If you prefer manual deployment:
-
-1. **Deploy Backend**
-   - Create a new Web Service on Render
-   - Build Command: `cd server && npm install`
-   - Start Command: `cd server && npm start`
-   - Add environment variables
-
-2. **Deploy Frontend**
-   - Create a new Static Site on Render
-   - Build Command: `cd client && npm install && npm run build`
-   - Publish Directory: `client/build`
-   - Add `REACT_APP_API_URL` environment variable
+This deployment strategy serves both frontend and backend from a single web service:
+- Express server serves the React build files as static assets
+- API routes are available at `/api/*`
+- React Router handles frontend routing
+- Single URL for everything - no CORS issues!
 
 ## 🧪 Testing Database Connection
 
@@ -162,10 +153,8 @@ JWT_SECRET=your_jwt_secret
 NODE_ENV=development
 ```
 
-### Frontend (Render automatically sets)
-```env
-REACT_APP_API_URL=https://your-backend-url.onrender.com
-```
+### Frontend
+No additional environment variables needed - API calls use the same domain in production.
 
 ## 📝 Notes
 
