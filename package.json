@@ -13,7 +13,7 @@
     "install-server": "cd server && npm install",
     "install-client": "cd client && npm install",
     "install-all": "npm run install-server && npm run install-client",
-    "build-production": "cd client && npm run build",
+    "build-production": "cd client && npm run build && cp -r build/* ../server/public/",
     "start-production": "cd server && npm start",
     "deploy": "npm run install-all && npm run build-production"
   },
