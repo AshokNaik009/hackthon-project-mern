@@ -11,8 +11,12 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:8003',
-        description: 'Development server',
+        url: process.env.NODE_ENV === 'production' 
+          ? 'https://hackthon-api.onrender.com' 
+          : 'http://localhost:8003',
+        description: process.env.NODE_ENV === 'production' 
+          ? 'Production server' 
+          : 'Development server',
       },
     ],
   },
