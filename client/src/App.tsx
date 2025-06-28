@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import SharesData from './pages/SharesData';
 import OrderData from './pages/OrderData';
 import TxnData from './pages/TxnData';
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   return (
