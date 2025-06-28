@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 
 // API routes
 app.use('/api/users', require('./routes/users'));
+app.use('/api/history', require('./routes/history'));
 
 // Serve React static files in production
 if (process.env.NODE_ENV === 'production') {
