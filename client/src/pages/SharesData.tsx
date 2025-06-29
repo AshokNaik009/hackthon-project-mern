@@ -41,49 +41,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 const [aiLoading, setAiLoading] = useState(false);
 
 
-// const fetchAIAnalysis = async () => {
-//   if (!selectedStock) {
-//     alert("Please select a stock first.");
-//     return;
-//   }
 
-//   setAiLoading(true);
-//   setIsModalOpen(true);
-
-//   try {
-//     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-//       method: "POST",
-//       headers: {
-//         "Authorization": "Bearer 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",
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify({
-//         model: "llama3-70b-8192", // or "mixtral-8x7b-32768", etc.
-//         messages: [
-//           {
-//             role: "system",
-//             content: "You are a helpful financial assistant. Provide investment insights."
-//           },
-//           {
-//             role: "user",
-//             content: `Give a detailed investment analysis for stock symbol "${selectedStock}". Include valuation metrics, risk factors, and future outlook.`
-//           }
-//         ],
-//         temperature: 0.7,
-//         max_tokens: 1024
-//       })
-//     });
-
-//     const data = await response.json();
-//     const message = data.choices?.[0]?.message?.content || "No response from AI.";
-//     setAiAnalysis(message);
-//   } catch (error) {
-//     console.error("AI Error:", error);
-//     setAiAnalysis("❌ Failed to fetch AI analysis. Check console for details.");
-//   } finally {
-//     setAiLoading(false);
-//   }
-// };
 
 const fetchAIAnalysis = async () => {
   if (!selectedStock) {
@@ -98,7 +56,7 @@ const fetchAIAnalysis = async () => {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer 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",
+        "Authorization": "Bearer Insert Yours",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
