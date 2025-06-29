@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <div className="h-screen w-64 bg-gray-900 text-white fixed left-0 top-0 flex flex-col">
       <div className="p-6 border-b border-gray-700">
-        <h1 className="text-xl font-bold">Trading App</h1>
+        <h1 className="text-xl font-bold">Portfolio Mangement App</h1>
       </div>
       
       <nav className="flex-1 p-4">
